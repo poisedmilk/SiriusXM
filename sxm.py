@@ -25,7 +25,7 @@ class SiriusXM:
         print('{} <SiriusXM>: {}'.format(datetime.datetime.now().strftime('%d.%b %Y %H:%M:%S'), x))
 
     def is_logged_in(self):
-        return 'SXMAUTH' in self.session.cookies
+        return 'SXMAUTHNEW' in self.session.cookies
 
     def is_session_authenticated(self):
         return 'AWSELB' in self.session.cookies and 'JSESSIONID' in self.session.cookies
@@ -101,7 +101,7 @@ class SiriusXM:
     def authenticate(self):
         if not self.is_logged_in() and not self.login():
             self.log('Unable to authenticate because login failed')
-            return False
+            exit(0)
 
         postdata = {
             'moduleList': {
